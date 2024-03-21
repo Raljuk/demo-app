@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './css/styles.css';
 import Game from "../../components/Game";
+import Editor from "../../components/Editor";
 
 class Home extends Component {
   state = {
@@ -17,7 +18,7 @@ class Home extends Component {
     const { editorMode } = this.state;
 
     return (
-      <div className={styles.FAQ}>
+      <div>
         <div>
           <form>
             <div className="radio">
@@ -34,7 +35,11 @@ class Home extends Component {
             </div>
           </form>
         </div>
-        <Game editorMode={editorMode}/>
+
+        {!editorMode && <Game/>}
+
+        {editorMode && <Editor/>}
+
       </div>
     );
   }

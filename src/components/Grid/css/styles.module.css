@@ -1,5 +1,10 @@
 .grid {
+  margin-top: 30px;
   color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .field {
@@ -18,11 +23,13 @@
   background: #cbc4c4;
 }
 
-.mined {
-  background: red;
-}
+
 
 .opened {
   background: #fff !important;
   border: 2px solid #fff;
+
+  ?.mined {
+    background: red;
+  }
 }

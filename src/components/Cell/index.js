@@ -4,13 +4,13 @@ import styles from './css/styles.module.css';
 
 class Cell extends Component {
   render() {
-    const { data, onCellClick } = this.props;
+    const { data, onCellClick, show } = this.props;
     const { mined, opened, near } = data;
 
     return (
         <div
             className={cx(styles.cell, {
-              [styles.mined]: mined,
+              [styles.mined]: show && mined,
               [styles.opened]: opened,
             })}
             onClick={onCellClick}>

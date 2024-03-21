@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import styles from './css/styles.module.css';
-import Cell from "../Cell";
 import {
   calcNear,
-  generateRandomGrid,
+  generateGrid,
   outBounds
 } from "../../utility/grid";
 import { GRID_SIZE } from "./constants";
+import Grid from "../Grid";
 
 class Game extends Component {
   state = {
-    gridSize: GRID_SIZE,
-    grid: generateRandomGrid(GRID_SIZE)
+    grid: generateGrid(GRID_SIZE)
   }
 
   reveal = (x, y) => {
-    if (outBounds(x,y, this.state.gridSize)) {
+    if (outBounds(x,y, Object.values(this.state.grid).length)) {
       return;
     }
 
@@ -58,63 +56,18 @@ class Game extends Component {
 
   finishGame = () => {
     this.setState({
-      grid: generateRandomGrid(this.state.gridSize)
-    })
-  }
-
-  renderGrid = () => {
-    const result = [];
-    const { grid } = this.state;
-
-    for(let x = 0; x < this.state.gridSize; x++){
-      let field = [];
-
-      for(let y=0; y < this.state.gridSize; y++){
-        field.push(<Cell
-            key={`${x}${y}`}
-            data={grid[x][y]}
-            onCellClick={() => this.onCellClick(grid[x][y])}
-        />);
-      }
-
-      result.push(
-          <div
-              key={`${x}`}
-              className={styles.field}>
-            {field}
-          </div>
-      );
-    }
-
-    return result;
-  }
-
-  onFieldSizeChange = (event) => {
-    console.log(+event.target.value)
-
-    this.setState({
-      gridSize: +event.target.value,
-      grid: generateRandomGrid(+event.target.value)
+      grid: generateGrid(Object.values(this.state.grid).length)
     })
   }
 
   render() {
-    const { editorMode } = this.props;
+    const { grid } = this.state;
+
+    console.log(grid);
 
     return (
         <>
-          <div className={styles.grid}>
-            {this.renderGrid()}
-          </div>
-
-          {editorMode && (
-              <div className={styles.fieldSize}>
-                <label>
-                  Fields Size
-                  <input type={'number'} onChange={this.onFieldSizeChange} />
-                </label>
-              </div>
-          )}
+          {grid && <Grid data={grid} onCellClick={this.onCellClick} /> }
         </>
     );
   }

@@ -1,12 +1,3 @@
-.grid {
-  margin-top: 30px;
-  color: red;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .field {
   display: flex;
 }

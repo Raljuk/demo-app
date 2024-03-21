@@ -1,7 +1,7 @@
 import { Grid } from "../components/Game/types";
 import { RANDOM_COEFFICIENT } from "./constants";
 
-export const generateRandomGrid = (size: number) => {
+export const generateGrid = (size: number, mined: boolean = true) => {
     const grid: Grid = {};
 
     for (let x = 0; x < size; x++) {
@@ -11,7 +11,7 @@ export const generateRandomGrid = (size: number) => {
             grid[x][y] = {
                 x,
                 y,
-                mined: Math.random() > RANDOM_COEFFICIENT,
+                mined: mined && Math.random() > RANDOM_COEFFICIENT,
                 opened: false,
                 flag: false,
                 near: 0,
