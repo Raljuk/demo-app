@@ -1,33 +1,48 @@
 import React, { Component } from 'react';
-import cx from 'classnames';
+import { connect } from 'react-redux';
+import { setMode } from '../../reducers/global/actions';
+import { getMode } from '../../reducers/global/selectors';
+import { Mode } from '../../reducers/global/types';
 import styles from './css/styles.module.css';
 
-class Cell extends Component {
-  onCellClick = () => {
-    const { x, y } = this.props.data;
+class Toolbar extends Component {
+  onModeChange(mode) {
+    const { dispatch } = this.props;
 
-    if (this.props.data.mined) {
-      alert('BOOM!');
-      return;
-    }
-
-    this.props.onCellClick(x, y);
+    dispatch(setMode(mode));
   }
-
   render() {
-    const { mined, opened, near } = this.props.data;
+    const { mode } = this.props;
 
     return (
-        <div
-            className={cx(styles.cell, {
-              [styles.mined]: mined,
-              [styles.opened]: opened,
-            })}
-            onClick={this.onCellClick}>
-          {opened && near > 0 ? near : ''}
+      <form className={styles.toolbar}>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              checked={mode === Mode.game}
+              onChange={() => this.onModeChange(Mode.game)}
+            />
+            Game
+          </label>
         </div>
+        <div className="radio">
+          <label>
+            <input
+              type="radio"
+              checked={mode === Mode.editor}
+              onChange={() => this.onModeChange(Mode.editor)}
+            />
+            Level Editor
+          </label>
+        </div>
+      </form>
     );
   }
 }
 
-export default Cell;
+const mapStateToProps = (state) => ({
+  mode: getMode(state),
+});
+
+export default connect(mapStateToProps)(Toolbar);

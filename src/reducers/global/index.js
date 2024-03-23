@@ -1,0 +1,1 @@
+export { globalReducer } from './actions';

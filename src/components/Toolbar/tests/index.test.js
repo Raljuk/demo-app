@@ -11,7 +11,7 @@ describe('FAQ component', () => {
         <BrowserRouter>
           <FAQ />
         </BrowserRouter>
-      </Provider>,
+      </Provider>
     );
 
     expect(component.html()).not.toBe(null);

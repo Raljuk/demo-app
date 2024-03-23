@@ -1,28 +1,20 @@
-.grid {
-  color: red;
-}
-
-.field {
-  display: flex;
-}
-
 .cell {
-  width: 20px;
   height: 20px;
-  border: 2px solid grey;
-  aspect-ratio: 1/1;
+  width: 20px;
+  background: #cdcdcd;
   border-top: 2px solid #fff;
   border-left: 2px solid #fff;
   border-right: 2px solid grey;
-  border-bottom: 2px slid grey;
-  background: #cbc4c4;
+  border-bottom: 2px solid grey;
+}
+
+.opened {
+  background: #fff;
+  border: 2px solid #fff;
 }
 
 .mined {
   background: red;
-}
-
-.opened {
-  background: #fff !important;
-  border: 2px solid #fff;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey;
 }

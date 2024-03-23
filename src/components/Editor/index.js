@@ -1,70 +1,105 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { GRID_SIZE, MAX_SIZE, NUMBER, TIMEOUT } from './constants';
+import Grid from '../Grid';
+import { generateGrid, setNearToGrid } from '../../utility/grid';
+import { addLevel } from '../../reducers/levels/actions';
+import { setMode } from '../../reducers/global/actions';
+import { Mode } from '../../reducers/global/types';
 import styles from './css/styles.module.css';
-import { generateGrid } from "../../utility/grid";
-import { GRID_SIZE } from "./constants";
-import Grid from "../Grid";
 
-class Game extends Component {
+class Editor extends Component {
   state = {
     size: GRID_SIZE,
-    grid: generateGrid(GRID_SIZE, false)
-  }
+    level: {
+      totalMines: 0,
+      grid: generateGrid(GRID_SIZE),
+    },
+  };
 
   onCellClick = (data) => {
-    const { grid } = this.state;
+    const { grid, totalMines } = this.state.level;
     const { x, y } = data;
 
-    grid[x][y].mined = !grid[x][y].mined;
-
     this.setState({
-      grid: { ...grid }
-    })
-  }
+      level: {
+        totalMines: totalMines + 1,
+        grid: {
+          ...grid,
+          [x]: {
+            ...grid[x],
+            [y]: {
+              ...grid[x][y],
+              mined: !grid[x][y].mined,
+            },
+          },
+        },
+      },
+    });
+  };
 
   onFieldSizeChange = async (event) => {
-    if (+event.target.value <= 99) {
-      this.setState({
-        size: +event.target.value
-      })
+    const size = +event.target.value;
 
-      this.setState({
-        grid: generateGrid(this.state.size, false)
-      })
+    this.setState({ size });
+
+    if (this.timeoutID) {
+      clearTimeout(this.timeoutID);
+      this.timeoutID = null;
     }
-  }
+
+    this.timeoutID = setTimeout(() => {
+      if (size <= MAX_SIZE) {
+        this.setState({
+          level: {
+            totalMines: 0,
+            grid: generateGrid(size),
+          },
+        });
+      }
+    }, TIMEOUT);
+  };
 
   saveChanges = () => {
-    // this.setState({
-    //   grid: generateGrid(this.state.size, false)
-    // })
-  }
+    const { dispatch } = this.props;
+    const { grid, totalMines } = this.state.level;
+
+    setNearToGrid(grid);
+
+    dispatch(
+      addLevel({
+        grid,
+        totalMines,
+      })
+    );
+
+    dispatch(setMode(Mode.game));
+  };
 
   render() {
-    const { grid, size } = this.state;
+    const { level, size } = this.state;
 
     return (
-        <>
+      <>
+        <Grid onCellClick={this.onCellClick} data={level.grid} />
 
-          <Grid onCellClick={this.onCellClick} data={grid} edit />
+        <div className={styles.fieldSize}>
+          <label>
+            Fields Size&nbsp;
+            <input
+              type={NUMBER}
+              value={size}
+              onChange={this.onFieldSizeChange}
+              min={2}
+              max={99}
+            />
+          </label>
+        </div>
 
-          <div className={styles.fieldSize}>
-            <label>
-              Fields Size&nbsp;
-              <input
-                type={'number'}
-                value={size}
-                onChange={this.onFieldSizeChange}
-                min={2}
-                max={99}
-              />
-            </label>
-          </div>
-
-          <button onClick={this.saveChanges}>Save</button>
-
-        </>
+        <button onClick={this.saveChanges}>Save</button>
+      </>
     );
   }
 }
 
-export default Game;
+export default connect()(Editor);
