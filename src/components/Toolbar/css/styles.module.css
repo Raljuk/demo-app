@@ -4,13 +4,13 @@
   display: flex;
   justify-content: center;
 
-  /*& > div:first-of-type {*/
-  /*  margin-right: 10px;*/
-  /*}*/
+  & > div:first-of-type {
+    margin-right: 10px;
+  }
 
-  /*label {*/
-  /*  align-items: center;*/
-  /*  display: flex;*/
-  /*  justify-content: center;*/
-  /*}*/
+  label {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 }
