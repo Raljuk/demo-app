@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { calcNear, isOutBounds } from '../../utility/grid';
 import Grid from '../Grid';
+import { CellData, Grid as GridType } from '../../utility/types';
 import { getLevels } from '../../reducers/levels/selectors';
-import { Status } from './types';
+import { GameProps, Status } from './types';
 import styles from './css/styles.module.css';
+import { State } from '../../reducers/types';
 
-class Game extends Component {
+class Game extends Component<GameProps> {
   cellsOpened = 0;
 
   state = {
@@ -15,11 +17,11 @@ class Game extends Component {
     status: Status.inProgress,
   };
 
-  get gridLength() {
+  get gridLength(): number {
     return Object.values(this.state.grid).length;
   }
 
-  reveal = (x, y, grid) => {
+  reveal = (x: number, y: number, grid: GridType): void => {
     if (isOutBounds(x, y, this.gridLength)) {
       return;
     }
@@ -50,7 +52,7 @@ class Game extends Component {
     }
   };
 
-  onCellClick = (data) => {
+  onCellClick = (data: CellData): void => {
     const { mined, x, y } = data;
     const { status } = this.state;
 
@@ -70,7 +72,7 @@ class Game extends Component {
     this.checkWin();
   };
 
-  finishGame = () => {
+  finishGame = (): void => {
     const { grid } = this.state;
 
     for (let x = 0; x < this.gridLength; x++) {
@@ -87,7 +89,7 @@ class Game extends Component {
     this.setState({ grid, status: Status.lose });
   };
 
-  restartGame = (level) => {
+  restartGame = (level: number): void => {
     this.setState({
       level,
       grid: { ...this.props.levels[level].grid },
@@ -97,7 +99,7 @@ class Game extends Component {
     this.cellsOpened = 0;
   };
 
-  checkWin = () => {
+  checkWin = (): void => {
     const { level } = this.state;
     const { totalMines } = this.props.levels[level];
 
@@ -122,7 +124,7 @@ class Game extends Component {
 
         <select
           className={styles.select}
-          onChange={(e) => this.restartGame(e.target.value)}
+          onChange={(e) => this.restartGame(+e.target.value)}
         >
           {levels &&
             levels.map((item, index) => (
@@ -139,7 +141,7 @@ class Game extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: State) => ({
   levels: getLevels(state),
 });
 

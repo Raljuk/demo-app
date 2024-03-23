@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { getMode } from '../../reducers/global/selectors';
 import { Mode } from '../../reducers/global/types';
 import styles from './css/styles.module.css';
-import { Colors } from './types';
+import { Colors, CellProps } from './types';
+import { State } from '../../reducers/types';
 
-class Cell extends Component {
+class Cell extends Component<CellProps> {
   render() {
     const { data, onCellClick, mode } = this.props;
     const { mined, opened, near } = data;
@@ -27,7 +28,7 @@ class Cell extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: State) => ({
   mode: getMode(state),
 });
 

@@ -4,9 +4,11 @@ import { setMode } from '../../reducers/global/actions';
 import { getMode } from '../../reducers/global/selectors';
 import { Mode } from '../../reducers/global/types';
 import styles from './css/styles.module.css';
+import { State } from '../../reducers/types';
+import { ToolbarProps } from './types';
 
-class Toolbar extends Component {
-  onModeChange(mode) {
+class Toolbar extends Component<ToolbarProps> {
+  onModeChange(mode: Mode): void {
     const { dispatch } = this.props;
 
     dispatch(setMode(mode));
@@ -41,7 +43,7 @@ class Toolbar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: State) => ({
   mode: getMode(state),
 });
 

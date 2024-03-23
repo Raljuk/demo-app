@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
 import { GRID_SIZE, MAX_SIZE, NUMBER, TIMEOUT } from './constants';
 import Grid from '../Grid';
@@ -7,8 +7,10 @@ import { addLevel } from '../../reducers/levels/actions';
 import { setMode } from '../../reducers/global/actions';
 import { Mode } from '../../reducers/global/types';
 import styles from './css/styles.module.css';
+import { CellData } from '../../utility/types';
+import { EditorProps } from './types';
 
-class Editor extends Component {
+class Editor extends Component<EditorProps> {
   state = {
     size: GRID_SIZE,
     level: {
@@ -17,7 +19,9 @@ class Editor extends Component {
     },
   };
 
-  onCellClick = (data) => {
+  timeoutID: null | number = 0;
+
+  onCellClick = (data: CellData): void => {
     const { grid, totalMines } = this.state.level;
     const { x, y } = data;
 
@@ -38,8 +42,10 @@ class Editor extends Component {
     });
   };
 
-  onFieldSizeChange = async (event) => {
-    const size = +event.target.value;
+  onFieldSizeChange = async (
+    event: ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
+    const size = +(event.target as HTMLInputElement).value;
 
     this.setState({ size });
 
@@ -48,7 +54,7 @@ class Editor extends Component {
       this.timeoutID = null;
     }
 
-    this.timeoutID = setTimeout(() => {
+    this.timeoutID = +setTimeout(() => {
       if (size <= MAX_SIZE) {
         this.setState({
           level: {
@@ -60,7 +66,7 @@ class Editor extends Component {
     }, TIMEOUT);
   };
 
-  saveChanges = () => {
+  saveChanges = (): void => {
     const { dispatch } = this.props;
     const { grid, totalMines } = this.state.level;
 
@@ -89,7 +95,7 @@ class Editor extends Component {
             <input
               type={NUMBER}
               value={size}
-              onChange={this.onFieldSizeChange}
+              onChange={(event) => this.onFieldSizeChange(event)}
               min={2}
               max={99}
             />

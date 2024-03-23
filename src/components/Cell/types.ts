@@ -1,3 +1,6 @@
+import { CellData } from '../../utility/types';
+import { Mode } from '../../reducers/global/types';
+
 export enum Colors {
   red = 1,
   green,
@@ -7,4 +10,10 @@ export enum Colors {
   yellow,
   black,
   grey,
+}
+
+export interface CellProps {
+  data: CellData;
+  mode: Mode;
+  onCellClick: () => void;
 }

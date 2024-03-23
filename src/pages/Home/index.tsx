@@ -5,8 +5,10 @@ import Editor from '../../components/Editor';
 import Toolbar from '../../components/Toolbar';
 import { getMode } from '../../reducers/global/selectors';
 import { Mode } from '../../reducers/global/types';
+import { State } from '../../reducers/types';
+import { HomeProps } from './types';
 
-class Home extends Component {
+class Home extends Component<HomeProps> {
   render() {
     const { mode } = this.props;
 
@@ -24,7 +26,7 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: State) => ({
   mode: getMode(state),
 });
 
