@@ -45,9 +45,10 @@ class Editor extends Component<EditorProps> {
   onFieldSizeChange = async (
     event: ChangeEvent<HTMLInputElement>
   ): Promise<void> => {
-    const size = +(event.target as HTMLInputElement).value;
+    let size = +(event.target as HTMLInputElement).value;
+    size = size <= MAX_SIZE ? size : MAX_SIZE;
 
-    this.setState({ size: size <= MAX_SIZE ? size : MAX_SIZE });
+    this.setState({ size });
 
     if (this.timeoutID) {
       clearTimeout(this.timeoutID);
@@ -55,14 +56,12 @@ class Editor extends Component<EditorProps> {
     }
 
     this.timeoutID = +setTimeout(() => {
-      if (size <= MAX_SIZE) {
-        this.setState({
-          level: {
-            totalMines: 0,
-            grid: generateGrid(size),
-          },
-        });
-      }
+      this.setState({
+        level: {
+          totalMines: 0,
+          grid: generateGrid(size),
+        },
+      });
     }, TIMEOUT);
   };
 
