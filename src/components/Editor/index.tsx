@@ -1,6 +1,6 @@
 import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
-import { GRID_SIZE, MAX_SIZE, NUMBER, TIMEOUT } from './constants';
+import { GRID_SIZE, MAX_SIZE, MIN_SIZE, NUMBER, TIMEOUT } from './constants';
 import Grid from '../Grid';
 import { generateGrid, setNear } from '../../utility/grid';
 import { addLevel } from '../../reducers/levels/actions';
@@ -96,8 +96,8 @@ class Editor extends Component<EditorProps> {
               type={NUMBER}
               value={size}
               onChange={(event) => this.onFieldSizeChange(event)}
-              min={2}
-              max={99}
+              min={MIN_SIZE}
+              max={MAX_SIZE}
             />
           </label>
         </div>

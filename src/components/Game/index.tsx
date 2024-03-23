@@ -21,34 +21,41 @@ class Game extends Component<GameProps> {
     return Object.values(this.state.grid).length;
   }
 
-  reveal = (x: number, y: number, grid: GridType): void => {
-    if (isOutBounds(x, y, this.gridLength)) {
-      return;
-    }
+  reveal = (startX: number, startY: number, grid: GridType): void => {
+    const stack: { x: number; y: number }[] = [{ x: startX, y: startY }];
 
-    if (grid[x][y].opened) {
-      return;
-    }
+    while (stack.length > 0) {
+      const { x, y } = stack.pop()!;
 
-    grid[x] = {
-      ...grid[x],
-      [y]: {
-        ...grid[x][y],
-        opened: true,
-      },
-    };
+      if (isOutBounds(x, y, this.gridLength) || grid[x][y].opened) {
+        continue;
+      }
 
-    this.cellsOpened++;
+      grid[x] = {
+        ...grid[x],
+        [y]: {
+          ...grid[x][y],
+          opened: true,
+        },
+      };
 
-    if (calcNear(x, y, grid) === 0) {
-      this.reveal(x - 1, y - 1, grid);
-      this.reveal(x - 1, y + 1, grid);
-      this.reveal(x + 1, y - 1, grid);
-      this.reveal(x + 1, y + 1, grid);
-      this.reveal(x - 1, y, grid);
-      this.reveal(x + 1, y, grid);
-      this.reveal(x, y - 1, grid);
-      this.reveal(x, y + 1, grid);
+      this.cellsOpened++;
+
+      if (calcNear(x, y, grid) === 0) {
+        const directions = [
+          { dx: -1, dy: -1 }, { dx: -1, dy: 1 },
+          { dx: 1, dy: -1 }, { dx: 1, dy: 1 },
+          { dx: -1, dy: 0 }, { dx: 1, dy: 0 },
+          { dx: 0, dy: -1 }, { dx: 0, dy: 1 }
+        ];
+
+        for (const direction of directions) {
+          const newX = x + direction.dx;
+          const newY = y + direction.dy;
+
+          stack.push({ x: newX, y: newY });
+        }
+      }
     }
   };
 
