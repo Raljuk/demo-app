@@ -43,10 +43,14 @@ class Game extends Component<GameProps> {
 
       if (calcNear(x, y, grid) === 0) {
         const directions = [
-          { dx: -1, dy: -1 }, { dx: -1, dy: 1 },
-          { dx: 1, dy: -1 }, { dx: 1, dy: 1 },
-          { dx: -1, dy: 0 }, { dx: 1, dy: 0 },
-          { dx: 0, dy: -1 }, { dx: 0, dy: 1 }
+          { dx: -1, dy: -1 },
+          { dx: -1, dy: 1 },
+          { dx: 1, dy: -1 },
+          { dx: 1, dy: 1 },
+          { dx: -1, dy: 0 },
+          { dx: 1, dy: 0 },
+          { dx: 0, dy: -1 },
+          { dx: 0, dy: 1 },
         ];
 
         for (const direction of directions) {
