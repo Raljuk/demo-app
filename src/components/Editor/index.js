@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GRID_SIZE, MAX_SIZE, NUMBER, TIMEOUT } from './constants';
 import Grid from '../Grid';
-import { generateGrid, setNearToGrid } from '../../utility/grid';
+import { generateGrid, setNear } from '../../utility/grid';
 import { addLevel } from '../../reducers/levels/actions';
 import { setMode } from '../../reducers/global/actions';
 import { Mode } from '../../reducers/global/types';
@@ -64,7 +64,7 @@ class Editor extends Component {
     const { dispatch } = this.props;
     const { grid, totalMines } = this.state.level;
 
-    setNearToGrid(grid);
+    setNear(grid);
 
     dispatch(
       addLevel({

@@ -1,3 +1,3 @@
 export function getMode(state = {}) {
-  return state.global.mode;
+  return state.global?.mode;
 }

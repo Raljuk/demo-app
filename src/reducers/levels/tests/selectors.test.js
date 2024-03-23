@@ -1,8 +1,7 @@
-import { getLootboxes, getUserLootbox } from '../selectors';
+import { getLevels } from '../selectors';
 
-describe('Lootbox selectors', () => {
+describe('Levels selectors', () => {
   it('Should not throw errors with empty arguments', () => {
-    expect(getLootboxes).not.toThrow();
-    expect(getUserLootbox).not.toThrow();
+    expect(getLevels).not.toThrow();
   });
 });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { calcNear, outBounds } from '../../utility/grid';
+import { calcNear, isOutBounds } from '../../utility/grid';
 import Grid from '../Grid';
 import { getLevels } from '../../reducers/levels/selectors';
 import { Status } from './types';
@@ -20,7 +20,7 @@ class Game extends Component {
   }
 
   reveal = (x, y, grid) => {
-    if (outBounds(x, y, this.gridLength)) {
+    if (isOutBounds(x, y, this.gridLength)) {
       return;
     }
 

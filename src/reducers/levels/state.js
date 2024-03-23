@@ -1,5 +1,5 @@
 import { generateGrid } from '../../utility/grid';
-import { LeveSizes } from "./types";
+import { LeveSizes } from './types';
 
 export const initialState = [
   {

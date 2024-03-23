@@ -1,19 +1,15 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import FAQ from '../index';
+import { render } from '@testing-library/react';
+import { mockStore } from '../../../utility/mocks';
+import Toolbar from '../index';
 
-describe('FAQ component', () => {
-  it('Should render FAQ component without errors', () => {
-    const component = shallow(
-      <Provider store={global.mockStore()}>
-        <BrowserRouter>
-          <FAQ />
-        </BrowserRouter>
-      </Provider>
-    );
+test('Should render Toolbar component without errors', () => {
+  const view = render(
+    <Provider store={mockStore()}>
+      <Toolbar />
+    </Provider>
+  );
 
-    expect(component.html()).not.toBe(null);
-  });
+  expect(view.container).not.toBe(null);
 });

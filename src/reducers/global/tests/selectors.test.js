@@ -1,8 +1,7 @@
-import { getLootboxes, getUserLootbox } from '../selectors';
+import { getMode } from '../selectors';
 
-describe('Lootbox selectors', () => {
+describe('Global selectors', () => {
   it('Should not throw errors with empty arguments', () => {
-    expect(getLootboxes).not.toThrow();
-    expect(getUserLootbox).not.toThrow();
+    expect(getMode).not.toThrow();
   });
 });

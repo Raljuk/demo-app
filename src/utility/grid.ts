@@ -28,7 +28,7 @@ function createEmptyGrid(size: number): Grid {
       };
     }
   }
-  
+
   return grid;
 }
 

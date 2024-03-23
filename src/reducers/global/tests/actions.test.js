@@ -1,9 +1,7 @@
-import { lootboxReducer, setLootbox, setLootboxes } from '../actions';
+import { setMode } from '../actions';
 
-describe('Lootbox actions', () => {
+describe('Global actions', () => {
   it('Should not throw errors with empty arguments', () => {
-    expect(lootboxReducer).not.toThrow();
-    expect(setLootbox).not.toThrow();
-    expect(setLootboxes).not.toThrow();
+    expect(setMode).not.toThrow();
   });
 });
