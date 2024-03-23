@@ -47,7 +47,7 @@ class Editor extends Component<EditorProps> {
   ): Promise<void> => {
     const size = +(event.target as HTMLInputElement).value;
 
-    this.setState({ size });
+    this.setState({ size: size <= MAX_SIZE ? size : MAX_SIZE });
 
     if (this.timeoutID) {
       clearTimeout(this.timeoutID);
