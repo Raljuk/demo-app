@@ -125,7 +125,7 @@ class Game extends Component<GameProps> {
 
     return (
       <>
-        <button onClick={() => this.restartGame(level)}>
+        <button className={styles.restartGameButton} onClick={() => this.restartGame(level)}>
           {status === Status.inProgress && <span>=)</span>}
           {status === Status.lose && <span>=(</span>}
           {status === Status.won && <span>=D</span>}

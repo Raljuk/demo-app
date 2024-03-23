@@ -1,3 +1,12 @@
 .fieldSize {
   margin: 30px 0;
 }
+
+.sizeInput {
+  height: 20px;
+}
+
+.saveButton {
+  height: 30px;
+  width: 70px;
+}
