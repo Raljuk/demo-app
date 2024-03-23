@@ -93,7 +93,7 @@ class Editor extends Component<EditorProps> {
           <label>
             Fields Size&nbsp;
             <input
-                className={styles.sizeInput}
+              className={styles.sizeInput}
               type={NUMBER}
               value={size}
               onChange={(event) => this.onFieldSizeChange(event)}
@@ -103,7 +103,9 @@ class Editor extends Component<EditorProps> {
           </label>
         </div>
 
-        <button className={styles.saveButton} onClick={this.saveChanges}>Save</button>
+        <button className={styles.saveButton} onClick={this.saveChanges}>
+          Save
+        </button>
       </>
     );
   }
