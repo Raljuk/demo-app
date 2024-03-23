@@ -1,10 +1,13 @@
+.gridWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .grid {
   margin-top: 30px;
   color: red;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  overflow: auto;
 }
 
 .field {

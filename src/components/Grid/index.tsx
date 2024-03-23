@@ -33,7 +33,7 @@ class Grid extends Component<GridProps> {
   };
 
   render() {
-    return <div className={styles.grid}>{this.renderGrid()}</div>;
+    return (<div className={styles.gridWrapper}><div className={styles.grid}>{this.renderGrid()}</div></div>);
   }
 }
 

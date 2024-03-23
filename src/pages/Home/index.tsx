@@ -13,7 +13,7 @@ class Home extends Component<HomeProps> {
     const { mode } = this.props;
 
     return (
-      <div>
+      <>
         <div>
           <Toolbar />
         </div>
@@ -21,7 +21,7 @@ class Home extends Component<HomeProps> {
         {mode === Mode.game && <Game />}
 
         {mode === Mode.editor && <Editor />}
-      </div>
+      </>
     );
   }
 }
