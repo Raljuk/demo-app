@@ -149,7 +149,7 @@ class Game extends Component<GameProps> {
         </select>
 
         {status === Status.won && <div>Congratulations! You are winner!</div>}
-        {status === Status.lose && <div>Hohoho! You are looser!</div>}
+        {status === Status.lose && <div>Hohoho! You are loser!</div>}
       </>
     );
   }
