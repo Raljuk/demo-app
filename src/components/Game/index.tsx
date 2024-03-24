@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { calcNear, isOutBounds } from '../../utility/grid';
-import Grid from '../Grid';
-import { CellData, Grid as GridType } from '../../utility/types';
-import { getLevels } from '../../reducers/levels/selectors';
+import { calcNear, isOutBounds } from '@utility/grid';
+import { CellData, Grid as GridType } from '@utility/types';
+import { getLevels } from '@reducers/levels/selectors';
+import { State } from '@reducers/types';
 import { GameProps, Status } from './types';
+import Grid from '../Grid';
 import styles from './css/styles.module.css';
-import { State } from '../../reducers/types';
 
 class Game extends Component<GameProps> {
   cellsOpened = 0;

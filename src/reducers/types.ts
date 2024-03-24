@@ -1,5 +1,5 @@
+import { Grid } from '@utility/types';
 import { LeveSizes } from './levels/types';
-import { Grid } from '../utility/types';
 import { Mode } from './global/types';
 
 export interface State {

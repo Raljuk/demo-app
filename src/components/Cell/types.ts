@@ -1,5 +1,5 @@
-import { CellData } from '../../utility/types';
-import { Mode } from '../../reducers/global/types';
+import { CellData } from '@utility/types';
+import { Mode } from '@reducers/global/types';
 
 export enum Colors {
   red = 1,

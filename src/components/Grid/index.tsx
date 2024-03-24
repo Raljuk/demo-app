@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Cell from '../Cell';
-import styles from './css/styles.module.css';
 import { GridProps } from './types';
+import styles from './css/styles.module.css';
 
 class Grid extends Component<GridProps> {
   renderGrid = (): JSX.Element[] => {

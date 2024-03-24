@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import { connect } from 'react-redux';
-import { getMode } from '../../reducers/global/selectors';
-import { Mode } from '../../reducers/global/types';
-import styles from './css/styles.module.css';
+import { getMode } from '@reducers/global/selectors';
+import { Mode } from '@reducers/global/types';
+import { State } from '@reducers/types';
 import { Colors, CellProps } from './types';
-import { State } from '../../reducers/types';
+import styles from './css/styles.module.css';
 
 class Cell extends Component<CellProps> {
   render() {

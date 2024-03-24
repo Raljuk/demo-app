@@ -1,5 +1,5 @@
+import client from '@utility/client';
 import { initialState } from './state';
-import client from '../../utility/client';
 
 export const ADD_LEVEL = 'ADD_LEVEL';
 export const ADD_LEVEL_FAILURE = 'ADD_LEVEL_FAILURE';

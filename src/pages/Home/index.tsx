@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Game from '../../components/Game';
-import Editor from '../../components/Editor';
-import Toolbar from '../../components/Toolbar';
-import { getMode } from '../../reducers/global/selectors';
-import { Mode } from '../../reducers/global/types';
-import { State } from '../../reducers/types';
+import Game from '@components/Game';
+import Editor from '@components/Editor';
+import Toolbar from '@components/Toolbar';
+import { getMode } from '@reducers/global/selectors';
+import { Mode } from '@reducers/global/types';
+import { State } from '@reducers/types';
 import { HomeProps } from './types';
-import { fetchLevels } from '../../reducers/levels/actions';
+import { fetchLevels } from '@reducers/levels/actions';
 
 class Home extends Component<HomeProps> {
   componentDidMount() {

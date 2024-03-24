@@ -1,4 +1,4 @@
-import { Grid } from '../../utility/types';
+import { Grid } from '@utility/types';
 
 export enum Status {
   inProgress,

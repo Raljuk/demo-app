@@ -1,14 +1,14 @@
 import React, { ChangeEvent, Component } from 'react';
 import { connect } from 'react-redux';
+import { generateGrid, setNear } from '@utility/grid';
+import { addLevel } from '@reducers/levels/actions';
+import { setMode } from '@reducers/global/actions';
+import { Mode } from '@reducers/global/types';
+import { CellData } from '@utility/types';
+import { EditorProps } from './types';
 import { GRID_SIZE, MAX_SIZE, MIN_SIZE, NUMBER, TIMEOUT } from './constants';
 import Grid from '../Grid';
-import { generateGrid, setNear } from '../../utility/grid';
-import { addLevel } from '../../reducers/levels/actions';
-import { setMode } from '../../reducers/global/actions';
-import { Mode } from '../../reducers/global/types';
 import styles from './css/styles.module.css';
-import { CellData } from '../../utility/types';
-import { EditorProps } from './types';
 
 class Editor extends Component<EditorProps> {
   state = {
