@@ -38,7 +38,7 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = {
-  setMode: fetchLevels,
+  fetchLevels: fetchLevels,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
