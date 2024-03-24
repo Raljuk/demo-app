@@ -66,19 +66,17 @@ class Editor extends Component<EditorProps> {
   };
 
   saveChanges = (): void => {
-    const { dispatch } = this.props;
     const { grid, totalMines } = this.state.level;
+    const { addLevel, setMode } = this.props;
 
     setNear(grid);
 
-    dispatch(
-      addLevel({
-        grid,
-        totalMines,
-      })
-    );
+    addLevel({
+      grid,
+      totalMines,
+    });
 
-    dispatch(setMode(Mode.game));
+    setMode(Mode.game);
   };
 
   render() {
@@ -110,4 +108,9 @@ class Editor extends Component<EditorProps> {
   }
 }
 
-export default connect()(Editor);
+const mapDispatchToProps = {
+  addLevel: addLevel,
+  setMode: setMode,
+};
+
+export default connect(null, mapDispatchToProps)(Editor);

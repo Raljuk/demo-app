@@ -9,9 +9,9 @@ import { ToolbarProps } from './types';
 
 class Toolbar extends Component<ToolbarProps> {
   onModeChange(mode: Mode): void {
-    const { dispatch } = this.props;
+    const { setMode } = this.props;
 
-    dispatch(setMode(mode));
+    setMode(mode);
   }
   render() {
     const { mode } = this.props;
@@ -47,4 +47,8 @@ const mapStateToProps = (state: State) => ({
   mode: getMode(state),
 });
 
-export default connect(mapStateToProps)(Toolbar);
+const mapDispatchToProps = {
+  setMode: setMode,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);

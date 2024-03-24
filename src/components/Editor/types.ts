@@ -1,3 +1,7 @@
+import { Mode } from '../../reducers/global/types';
+import { Grid } from '../../utility/types';
+
 export interface EditorProps {
-  dispatch: (value: { type: string; text: any }) => {};
+  addLevel: (value: { grid: Grid; totalMines: number }) => void;
+  setMode: (value: Mode) => void;
 }
