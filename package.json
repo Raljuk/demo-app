@@ -142,7 +142,13 @@
     "modulePaths": [],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "@components/(.*)": "<rootDir>/src/components/$1",
+      "@reducers/(.*)": "<rootDir>/src/reducers/$1",
+      "@utility/(.*)": "<rootDir>/src/utility/$1",
+      "@pages/(.*)": "<rootDir>/src/pages/$1",
+      "^axios$": "axios/dist/node/axios.cjs"
+
     },
     "moduleFileExtensions": [
       "web.js",

@@ -13,8 +13,8 @@ app.get('/levels', (req, res) => {
 });
 
 app.post('/levels', (req, res) => {
-  const { grid, totalMines } = req.body;
-  const newLevel = { grid, totalMines };
+  const {grid, totalMines} = req.body;
+  const newLevel = {grid, totalMines};
   levels.push(newLevel);
   res.status(201).json(newLevel);
 });
