@@ -148,7 +148,6 @@
       "@utility/(.*)": "<rootDir>/src/utility/$1",
       "@pages/(.*)": "<rootDir>/src/pages/$1",
       "^axios$": "axios/dist/node/axios.cjs"
-
     },
     "moduleFileExtensions": [
       "web.js",

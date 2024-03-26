@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from '@testing-library/react';
 import Home from '../index';
-import store from "../../../store";
+import store from '../../../store';
 
 describe('Home page', () => {
   it('Should render Home page without errors', () => {
